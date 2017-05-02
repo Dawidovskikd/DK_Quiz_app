@@ -1,0 +1,19 @@
+{
+  "name": "dk_quiz_app",
+  "version": "1.0.0",
+  "description": "Project created for recruiting process",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dawidovskikd/DK_Quiz_app.git"
+  },
+  "author": "Dawid Krzyszycha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dawidovskikd/DK_Quiz_app/issues"
+  },
+  "homepage": "https://github.com/Dawidovskikd/DK_Quiz_app#readme"
+}
