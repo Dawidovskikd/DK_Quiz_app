@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Dawidovskikd/DK_Quiz_app/issues"
   },
-  "homepage": "https://github.com/Dawidovskikd/DK_Quiz_app#readme"
+  "homepage": "https://github.com/Dawidovskikd/DK_Quiz_app#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
 }
