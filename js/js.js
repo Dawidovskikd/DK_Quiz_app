@@ -15,6 +15,8 @@ else if ( quizStatus == 'ongoing'){
     Model.updateQuizJSON();
     Model.updateRemainingTime();
     if (Model.getRemainingTime() >= 0){
+        //Still some time left
+
         View.hideAllViews();
         Controller.createQuestions();
         Controller.loadAnswersToForm();
@@ -22,14 +24,19 @@ else if ( quizStatus == 'ongoing'){
     }
     else {
         // Quiz was ongoing but time run out
+
         Controller.updateQuizStatus('ended');
         View.hideAllViews();
+        Model.updateQuizJSON();
+        Controller.createSummary();
         View.showSummaryStateView();
     }
 }
 else if (quizStatus == 'ended' ) {
     //Show previous quiz summary
+
     View.hideAllViews();
+    Model.updateQuizJSON();
     Controller.createSummary();
     View.showSummaryStateView();
 }
