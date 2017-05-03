@@ -10,34 +10,41 @@
 
 </head>
 <body>
-<div>
-    <h2 class="welcome_text">Welcome! Your Quiz is about to start. You have 5 min to answer all questions. When you are ready press the start button</h2>
-    <button id="quiz-start">
+<div class="welcome main-column ">
+    <h2 class="welcome__text">Witaj! Za chwilę rozpoczniesz test. Masz 5 minut aby odpowiedzieć na wszystkie pytania. When you are ready press the start button</h2>
+    <button id="quiz-start" class="sg-button-primary sg-button-primary--alt">
         Start
     </button>
 </div>
-<div id="quiz-timer">
-    Remaining time : <span id="remaining-time"></span>
+
+<div id="quiz-timer" class="quiz-timer">
+    Pozostały czas:&nbsp;<span id="remaining-time"></span>
 </div>
-<form id="quiz-form" class="hidden">
+
+<form id="quiz-form" class="quiz-form main-column hidden">
 
 </form>
 
-<button id="quiz-submit" type="submit" form="quiz-form">Zakończ</button>
+<button id="quiz-submit" type="submit" form="quiz-form" class="sg-button-primary sg-button-primary--alt">Zakończ</button>
 
-<div id="quiz-summary" class="hidden">
+<div id="quiz-summary" class="hidden quiz-summary main-column ">
     <div class="summary">
         <div class="score">
-            Twój wynik to <span id="score"></span>/9. Poniżej znajdziesz dodatkowe informacje na temat twojego testu.
+            <h3>Twój wynik to <span id="score"></span>/9. Poniżej znajdziesz dodatkowe informacje na temat twojego testu.</h3>
         </div>
         <div id="questions-summary">
 
         </div>
     </div>
 
-    <button id="quiz-restart">
-        Restart
-    </button>
+    <div class="sg-actions-list sg-actions-list--to-right">
+        <div class="sg-actions-list__hole">
+            <button id="quiz-restart" class="sg-button-primary sg-button-primary--alt">
+                Restart
+            </button>
+        </div>
+    </div>
+
 
 
 </div>

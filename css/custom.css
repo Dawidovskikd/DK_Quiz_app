@@ -1,22 +1,88 @@
-body{
-    padding: 10px 10px;
+* {
+    color: #434e66;
 }
 
 h2{
     text-align: center ;
 }
+h3{
+    color: #434e66;
+}
+h4{
+    padding-bottom: 5px;
+    color: #434e66;
+}
+.main-column{
+    width: 100vw;
+    max-width: 1024px;
+    margin: 0 auto;
+}
+.welcome{
+    min-height: 100vh;
+    width: 100vw;
+    box-sizing: border-box;
 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px;
+}
+
+.welcome__text{
+    padding-bottom: 20px;
+}
+
+.quiz-form{
+    padding: 30px 10px 50px;
+}
+.quiz-form .answer{
+    padding-bottom: 5px;
+}
+
+.quiz-timer{
+    z-index: 99;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100vw;
+    min-height: 30px;
+
+    border-radius: 0 0 10px 10px ;
+    background-color: #f0f3f5;
+
+    text-align: center;
+}
+
+#quiz-submit{
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+}
+.quiz-summary{
+    padding: 10px;
+}
+.summary .question{
+    padding: 10px 0;
+}
+.summary .answer{
+    font-size: .75rem;
+    line-height: .80rem;
+    padding-bottom: .20rem;
+}
 .summary .answer.correct{
-    background-color: green;
+    background-color: #a8edc8;
 }
 .summary .answer.incorrect{
-    background-color: red;
+    background-color: #ff796b;
 }
-
-.visible{
-    display: block;
-}
-
 .hidden {
     display: none;
 }

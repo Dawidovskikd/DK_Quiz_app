@@ -8,7 +8,7 @@ var quizRestartButton = document.querySelector('#quiz-restart');
 var quizStartButton = document.querySelector('#quiz-start');
 var quizSubmitButton = document.querySelector('#quiz-submit');
 var quizSummary = document.querySelector('#quiz-summary');
-var quizWelcomeText = document.querySelector('.welcome_text');
+var quizWelcomeText = document.querySelector('.welcome__text');
 var timerContainer = document.querySelector('#quiz-timer');
 var startTime = new Date(getCookie('startTime'));
 var currentTime = new Date();
@@ -55,6 +55,7 @@ function startQuiz () {
     startTimer();
     updateRemainingTime();
     showOngoingStateView();
+    window.scrollTo(0,0);
     updateQuizStatus('ongoing');
 }
 function submitQuiz(e) {
@@ -63,6 +64,7 @@ function submitQuiz(e) {
     setAnswersCookie(serializeQuizForm());
     createSummary();
     showSummaryStateView();
+    window.scrollTo(0,0);
     setQuizStatusCookie('ended');
 }
 function restartQuiz() {
@@ -79,21 +81,19 @@ function hideAllViews() {
     hideSummarySateView();
 }
 function showStatelessView() {
-    showWelcomeText();
-    showStartButton();
+    var statelessView = document.querySelector('.welcome');
+    statelessView.classList.remove('hidden');
     hideOngoingStateView();
     hideSummarySateView();
 }
 function hideStatelessView() {
-    hideWelcomeText();
-    hideStartButton();
+    var statelessView = document.querySelector('.welcome');
+    statelessView.classList.add('hidden');
 }
 function showSubmitButton() {
     quizSubmitButton.classList.remove('hidden');
-    quizSubmitButton.classList.add('visible');
 }
 function hideSubmitButton() {
-    quizSubmitButton.classList.remove('visible');
     quizSubmitButton.classList.add('hidden');
 }
 function showOngoingStateView() {
@@ -108,27 +108,9 @@ function hideOngoingStateView() {
 }
 function showSummaryStateView() {
     quizSummary.classList.remove('hidden');
-    quizSummary.classList.add('visible');
 }
 function hideSummarySateView() {
-    quizSummary.classList.remove('visible');
     quizSummary.classList.add('hidden');
-}
-function showWelcomeText() {
-    quizWelcomeText.classList.remove('hidden');
-    quizWelcomeText.classList.add('visible');
-}
-function hideWelcomeText() {
-    quizWelcomeText.classList.remove('visible');
-    quizWelcomeText.classList.add('hidden');
-}
-function showStartButton() {
-    quizStartButton.classList.remove('hidden');
-    quizStartButton.classList.add('visible');
-}
-function hideStartButton() {
-    quizStartButton.classList.remove('visible');
-    quizStartButton.classList.add('hidden');
 }
 function showQuestions() {
     if ( !quizQuestionsInitialized ){
@@ -143,20 +125,16 @@ function showQuestions() {
     }
 
     quizForm.classList.remove('hidden');
-    quizForm.classList.add('visible');
 
 }
 function hideQuestions() {
-    quizForm.classList.remove('visible');
     quizForm.classList.add('hidden');
 }
 function showRemainingTime() {
     updateRemainingTimeContainer();
     timerContainer.classList.remove('hidden');
-    timerContainer.classList.add('visible');
 }
 function hideRemainingTime() {
-    timerContainer.classList.remove('visible');
     timerContainer.classList.add('hidden');
 }
 
@@ -167,7 +145,7 @@ function createQuestionSummary(question, answer) {
 
     questionNode.classList.add('question');
     questionNode.appendChild(questionTitle);
-    questionTitle.innerText = question['question'];
+    questionTitle.innerText = 'Pytanie ' + question['id'] + ': ' + question['question'];
 
     for (var i =0 ; i< question['answers'].length ; i++){
         answerNode = document.createElement('div');
@@ -177,7 +155,6 @@ function createQuestionSummary(question, answer) {
         if( question['answers'][i]['id'] == answer ){
             answerNode.classList.add( (question['answers'][i]['correct']) ? 'correct' : 'incorrect' );
             questionNode.appendChild(answerNode);
-            answerNode.classList.remove('correct,incorrect');
         }
         else {
             questionNode.appendChild(answerNode);
@@ -223,28 +200,31 @@ function createSummary() {
 function createQuestion(question, index) {
 
     var node = document.createElement('div');
-
-    node.className += ' question';
-    node.innerHTML += '<h4>' +  'Question ' + index + ': ' + question['question'] + '</h4>';
-
+    var sg_radio;
     var answer = null;
     var label = null;
     var input = null;
+    var id = '';
+
+    node.className += ' question';
+    node.innerHTML += '<h4>' +  'Pytanie ' + index + ': ' + question['question'] + '</h4>';
 
     for (var i = 0 ; i < question['answers'].length ; i++){
-        answer = document.createElement('div');
-        answer.className += ' answer';
-        label = document.createElement('label');
-        input = document.createElement('input');
+        sg_radio = document.createElement('div');
 
-        input.type = 'radio';
-        input.value = question['answers'][i]['id'];
-        input.name = 'question-' + index;
+        id = 'answer-' + index + '-' + i;
+        sg_radio.innerHTML =
+            '<div class="sg-label sg-label--secondary answer">\
+                <div class="sg-label__icon">\
+                    <div class="sg-radio">\
+                        <input class="sg-radio__element" type="radio" id="' + id + '" value="'+ question['answers'][i]['id'] + '" name="' + 'question-' + index + '">\
+                        <label class="sg-radio__ghost" for="' + id + '"></label>\
+                    </div>\
+                </div>\
+                <label class="sg-label__text" for="' + id + '">' +  question['answers'][i]['answer'] + '</label>\
+            </div>';
 
-        label.appendChild(input);
-        label.innerHTML += question['answers'][i]['answer'] ;
-        answer.appendChild(label);
-        node.appendChild(answer);
+        node.appendChild(sg_radio);
     }
 
     return node;
@@ -256,6 +236,7 @@ function updateQuizStatus(newStatus) {
     setQuizStatusCookie(newStatus);
 }
 function setQuizStatusCookie(status) {
+    quizStatus = status;
     setCookie('quizStatus' , status , 1);
 }
 function setAnswersCookie(serializedAnswers) {
