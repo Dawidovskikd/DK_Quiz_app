@@ -1,3 +1,22 @@
 body{
     padding: 10px 10px;
 }
+
+h2{
+    text-align: center ;
+}
+
+.summary .answer.correct{
+    background-color: green;
+}
+.summary .answer.incorrect{
+    background-color: red;
+}
+
+.visible{
+    display: block;
+}
+
+.hidden {
+    display: none;
+}

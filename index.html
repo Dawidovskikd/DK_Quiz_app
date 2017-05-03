@@ -6,48 +6,41 @@
     <title>Quiz App - Challenge</title>
 
     <link href="https://styleguide.brainly.com/77.2.0/style-guide.css" rel="stylesheet"/>
-    <link href="css/custom.css">
+    <link href="css/custom.css" rel="stylesheet">
 
 </head>
 <body>
-
 <div>
-    <h2>Welcome! Your Quiz is about to start. You have 5 min to answer all questions. When you are ready press the start button</h2>
-    <div id="quiz-start" class="button">
+    <h2 class="welcome_text">Welcome! Your Quiz is about to start. You have 5 min to answer all questions. When you are ready press the start button</h2>
+    <button id="quiz-start">
         Start
-    </div>
+    </button>
 </div>
+<div id="quiz-timer">
+    Remaining time : <span id="remaining-time"></span>
+</div>
+<form id="quiz-form" class="hidden">
 
-<form id="quiz-form">
-    <div>
-        <div class="question">Question 1
-            <div class="answer">
-                <label>
-                    <input type="radio" name="question-1" value="1">
-                    Answer 1
-                </label>
-            </div>
-            <div class="answer">
-                <label>
-                    <input type="radio" name="question-1" value="2">
-                    Answer 2
-                </label>
-            </div>
-            <div class="answer">
-                <label>
-                    <input type="radio" name="question-1" value="3">
-                    Answer 3
-                </label>
-            </div>
-            <div class="answer">
-                <label>
-                    <input type="radio" name="question-1" value="4">
-                    Answer 4
-                </label>
-            </div>
+</form>
+
+<button id="quiz-submit" type="submit" form="quiz-form">Zakończ</button>
+
+<div id="quiz-summary" class="hidden">
+    <div class="summary">
+        <div class="score">
+            Twój wynik to <span id="score"></span>/9. Poniżej znajdziesz dodatkowe informacje na temat twojego testu.
+        </div>
+        <div id="questions-summary">
+
         </div>
     </div>
-</form>
+
+    <button id="quiz-restart">
+        Restart
+    </button>
+
+
+</div>
 
 <script src="js/js.js"></script>
 
